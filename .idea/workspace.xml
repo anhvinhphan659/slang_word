@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5ab98070-d6a6-4921-9949-9d0dc77e5244" name="Changes" comment="Done main UI">
+    <list default="true" id="5ab98070-d6a6-4921-9949-9d0dc77e5244" name="Changes" comment="Finish basic for dictionaryUI">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screen/dictionaryUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/screen/dictionaryUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screen/MainUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/screen/MainUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screen/MiniGameUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/screen/MiniGameUI.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -76,7 +77,9 @@
       <workItem from="1647068826265" duration="5125000" />
       <workItem from="1647085959843" duration="319000" />
       <workItem from="1647088435550" duration="5871000" />
-      <workItem from="1647156607718" duration="7649000" />
+      <workItem from="1647156607718" duration="7735000" />
+      <workItem from="1647179507970" duration="3603000" />
+      <workItem from="1647187726807" duration="2109000" />
     </task>
     <task id="LOCAL-00001" summary="Initialized project">
       <created>1646871733110</created>
@@ -106,7 +109,14 @@
       <option name="project" value="LOCAL" />
       <updated>1647164813581</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Finish basic for dictionaryUI">
+      <created>1647165033270</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1647165033270</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -128,6 +138,7 @@
     <MESSAGE value="Finish reading data from slang.txt" />
     <MESSAGE value="finish basic ui for dictionaryUI" />
     <MESSAGE value="Done main UI" />
-    <option name="LAST_COMMIT_MESSAGE" value="Done main UI" />
+    <MESSAGE value="Finish basic for dictionaryUI" />
+    <option name="LAST_COMMIT_MESSAGE" value="Finish basic for dictionaryUI" />
   </component>
 </project>

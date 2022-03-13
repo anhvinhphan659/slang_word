@@ -90,7 +90,20 @@ public class MainUI {
             @Override
             public void actionPerformed(ActionEvent e) {
                 loadScreen(new dictionaryUI(MainUI.this));
+            }
+        });
 
+        mini_gameButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                loadScreen(new MiniGameUI(MainUI.this));
+            }
+        });
+
+        exitButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.exit(0);
             }
         });
     }
