@@ -3,8 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="5ab98070-d6a6-4921-9949-9d0dc77e5244" name="Changes" comment="Done main UI">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screen/MainUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/screen/MainUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screen/SearchUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/screen/dictionaryUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screen/dictionaryUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/screen/dictionaryUI.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -77,7 +76,7 @@
       <workItem from="1647068826265" duration="5125000" />
       <workItem from="1647085959843" duration="319000" />
       <workItem from="1647088435550" duration="5871000" />
-      <workItem from="1647156607718" duration="7414000" />
+      <workItem from="1647156607718" duration="7649000" />
     </task>
     <task id="LOCAL-00001" summary="Initialized project">
       <created>1646871733110</created>
@@ -100,7 +99,14 @@
       <option name="project" value="LOCAL" />
       <updated>1647086258214</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Done main UI">
+      <created>1647164813580</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1647164813581</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -120,6 +126,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Initialized project" />
     <MESSAGE value="Finish reading data from slang.txt" />
+    <MESSAGE value="finish basic ui for dictionaryUI" />
     <MESSAGE value="Done main UI" />
     <option name="LAST_COMMIT_MESSAGE" value="Done main UI" />
   </component>

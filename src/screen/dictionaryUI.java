@@ -164,7 +164,7 @@ public class dictionaryUI extends JPanel
         JPanel meanPanel=new JPanel(new BorderLayout());
 
         wordPanel.add(new JLabel("Word"), BorderLayout.LINE_START);
-        wordPanel.add(new JLabel("<html>Hello <br> tessts</html>"),BorderLayout.CENTER);
+//        wordPanel.add(new JLabel("<html>Hello <br> tessts</html>"),BorderLayout.CENTER);
         wordPanel.setMaximumSize(new Dimension(Integer.MAX_VALUE,100));
         wordPanel.setBackground(Color.orange);
 
