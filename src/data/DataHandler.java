@@ -35,6 +35,7 @@ public class DataHandler {
 
                 //read next line
                 line=br.readLine();
+
             }
 
             br.close();
@@ -43,6 +44,8 @@ public class DataHandler {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+
 
         return slangDict;
     }

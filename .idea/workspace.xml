@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5ab98070-d6a6-4921-9949-9d0dc77e5244" name="Changes" comment="Finish basic for dictionaryUI">
+    <list default="true" id="5ab98070-d6a6-4921-9949-9d0dc77e5244" name="Changes" comment="Finish basic for MiniGameUI">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/data/slang.txt" beforeDir="false" afterPath="$PROJECT_DIR$/resources/data/slang.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/DataHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/DataHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/SlangHashMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/SlangHashMap.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/screen/MainUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/screen/MainUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screen/MiniGameUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/screen/MiniGameUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screen/dictionaryUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/screen/dictionaryUI.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -79,7 +83,13 @@
       <workItem from="1647088435550" duration="5871000" />
       <workItem from="1647156607718" duration="7735000" />
       <workItem from="1647179507970" duration="3603000" />
-      <workItem from="1647187726807" duration="2109000" />
+      <workItem from="1647187726807" duration="2164000" />
+      <workItem from="1647219864485" duration="5056000" />
+      <workItem from="1647263180239" duration="2495000" />
+      <workItem from="1647265743570" duration="618000" />
+      <workItem from="1647348440684" duration="6671000" />
+      <workItem from="1647359652034" duration="666000" />
+      <workItem from="1647391763406" duration="7713000" />
     </task>
     <task id="LOCAL-00001" summary="Initialized project">
       <created>1646871733110</created>
@@ -116,7 +126,14 @@
       <option name="project" value="LOCAL" />
       <updated>1647165033270</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Finish basic for MiniGameUI">
+      <created>1647189901307</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1647189901307</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -139,6 +156,7 @@
     <MESSAGE value="finish basic ui for dictionaryUI" />
     <MESSAGE value="Done main UI" />
     <MESSAGE value="Finish basic for dictionaryUI" />
-    <option name="LAST_COMMIT_MESSAGE" value="Finish basic for dictionaryUI" />
+    <MESSAGE value="Finish basic for MiniGameUI" />
+    <option name="LAST_COMMIT_MESSAGE" value="Finish basic for MiniGameUI" />
   </component>
 </project>

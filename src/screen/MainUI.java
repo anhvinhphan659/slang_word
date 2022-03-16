@@ -1,11 +1,16 @@
 package screen;
 
+import data.DataHandler;
+import data.SlangHashMap;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 public class MainUI {
+
     public static final int _WINDOW_WIDTH=800;
     public static final int _WINDOW_HEIGHT=600;
     public static final int _TOP_HEIGHT=200;
@@ -19,10 +24,17 @@ public class MainUI {
     private JButton dictionaryButton;
     private JButton mini_gameButton;
     private JButton exitButton;
-    public MainUI()
+
+    private SlangHashMap dictionary;
+    public MainUI(SlangHashMap dictionary)
     {
         mainFrame=new JFrame("Slang Word Dictionary");
+        this.dictionary=dictionary;
         setUpUI();
+    }
+
+    public SlangHashMap getDictionary() {
+        return dictionary;
     }
 
     private void initializeUI()
@@ -128,4 +140,25 @@ public class MainUI {
         setUpUI();
         mainFrame.setVisible(true);
     }
+
+    public void addNewPaired(String word, String mean)
+    {
+        dictionary.putValue(word,mean);
+    }
+
+    public void removeWord(String word)
+    {
+        dictionary.removeWord(word);
+    }
+
+    public void saveDictionary()
+    {
+        System.out.println("Dictionary is saved");
+        dictionary.saveDictionary();
+    }
+    public void resetDictionary()
+    {
+        dictionary= DataHandler.loadData(SlangHashMap._BACKUP_DATA_PATH);
+    }
+
 }
