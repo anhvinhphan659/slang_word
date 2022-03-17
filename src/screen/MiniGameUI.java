@@ -4,9 +4,14 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.*;
 
 public class MiniGameUI extends JPanel
 {
+    private static final int _NUMBER_OF_ANSWER=4;
+    private static final int _NUMBER_OF_QUIZ=10;
+    private int rightAnswerQuiz=0;
+    private int currentAnswerQuiz=0;
     private MainUI mainUI;
 
     private JPanel leftPanel;
@@ -16,11 +21,19 @@ public class MiniGameUI extends JPanel
 
     JButton startButton;
 
-    private DefaultComboBoxModel<String> gameModeCB;
+    JComboBox  gameModeCB;
+    private DefaultComboBoxModel<String> gameModeCBModel;
+
+    private ArrayList<String> wordList;
+    private ArrayList<ArrayList<String>> meanList;
 
     public MiniGameUI(MainUI mainUI)
     {
         this.mainUI=mainUI;
+        HashMap dictionary=mainUI.getDictionary().getData();
+        TreeMap<String,ArrayList<String>> map=new TreeMap(dictionary);
+        wordList=new ArrayList<>(map.keySet());
+        meanList=new ArrayList<>(map.values());
         initializeUI();
         setVisible(true);
     }
@@ -44,7 +57,7 @@ public class MiniGameUI extends JPanel
     public void setupLeftPanel()
     {
         leftPanel.setLayout(new BorderLayout());
-        gameModeCB=new DefaultComboBoxModel<>();
+        gameModeCBModel =new DefaultComboBoxModel<>();
 
         JPanel gamePanel=new JPanel();
         JPanel buttonPanel=new JPanel();
@@ -60,11 +73,14 @@ public class MiniGameUI extends JPanel
 
         buttonPanel.setLayout(new BoxLayout(buttonPanel,BoxLayout.Y_AXIS));
 
-        gameModeCB.addElement("Word");
-        gameModeCB.addElement("Mean");
+        gameModeCBModel.addElement("Word");
+        gameModeCBModel.addElement("Mean");
 
         buttonTopPanel.add(new JLabel("Mode: "));
-        buttonTopPanel.add(new JComboBox<>(gameModeCB));
+
+        gameModeCB = new JComboBox<>(gameModeCBModel);
+
+        buttonTopPanel.add(gameModeCB);
         buttonTopPanel.setPreferredSize(new Dimension(200,50));
 
         startButton=new JButton("START");
@@ -97,6 +113,7 @@ public class MiniGameUI extends JPanel
             @Override
             public void actionPerformed(ActionEvent e) {
                 startButton.setEnabled(true);
+                loadStartedScreen();
             }
         });
 
@@ -107,20 +124,194 @@ public class MiniGameUI extends JPanel
     }
     public void setupCenterPanel()
     {
-        centerPanel.add(new JLabel("Hello"));
+        loadStartedScreen();
     }
 
     public void startGame()
     {
+
         centerPanel.removeAll();
         centerPanel.revalidate();
+        centerPanel.repaint();
         startButton.setEnabled(false);
+
+        //get mode
+        int mode=gameModeCB.getSelectedIndex();
+
+        //generate list question and answer
+
+
+
         //load game here
+//        String[] anwers={"Ans1","Ans2","Ans3","Ans4"};
+        loadGame(mode);
+//        loadGame(quiz.question,quiz.answers.toArray(new String[0]),quiz.rightAns);
+
     }
 
-    public void loadGame(String question, String[]answers,int rightAnwser)
+    public void loadGame(int mode)
     {
+        centerPanel.removeAll();
+        centerPanel.revalidate();
 
+        centerPanel.setLayout(new BorderLayout());
+
+        GameQuiz quiz;
+        if (mode==0)
+            quiz=generateQuiz(0);
+        else
+            quiz=generateQuiz(1);
+        String question= quiz.question;
+        String[]answers=quiz.answers.toArray(new String[0]);
+        int rightAnwser=quiz.rightAns;
+        JPanel topGamePanel=new JPanel();
+        JPanel centerGamePanel=new JPanel(new GridLayout(2,2,25,25));
+        JPanel emptyPanel=new JPanel();
+
+        topGamePanel.setLayout(new BoxLayout(topGamePanel,BoxLayout.Y_AXIS));
+        topGamePanel.setPreferredSize(new Dimension(600,100));
+        JLabel questionLabel=new JLabel(question);
+        topGamePanel.add(questionLabel);
+        SlangAnswerButton.setRightAnswerID(rightAnwser);
+
+        emptyPanel.setPreferredSize(new Dimension(600,200));
+
+        for (int i=0;i<answers.length;i++)
+        {
+            SlangAnswerButton answerButton=new SlangAnswerButton(answers[i],i);
+
+            answerButton.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    if(answerButton.getAnswerID()==rightAnwser)
+                    {
+                        System.out.println("Right answer");
+                        rightAnswerQuiz++;
+                    }
+                    currentAnswerQuiz++;
+                    if(currentAnswerQuiz<_NUMBER_OF_QUIZ)
+                    {
+                        loadGame(mode);
+                        System.out.println("Current: "+String.valueOf(currentAnswerQuiz));
+                        System.out.println("Right: "+String.valueOf(rightAnswerQuiz));
+                    }
+                    else
+                    {
+                        //load done
+                        JOptionPane.showMessageDialog(null,"Your game is finished with score: "+String.valueOf(rightAnwser));
+                        loadStartedScreen();
+                    }
+                }
+            });
+            centerGamePanel.add(answerButton);
+        }
+
+        centerPanel.add(topGamePanel,BorderLayout.NORTH);
+        centerPanel.add(centerGamePanel,BorderLayout.CENTER);
+        centerPanel.add(emptyPanel,BorderLayout.SOUTH);
+
+    }
+
+    public void loadStartedScreen()
+    {
+//        centerPanel.setVisible(false);
+        centerPanel.removeAll();
+        centerPanel.revalidate();
+        centerPanel.repaint();
+        centerPanel.setLayout(new BoxLayout(centerPanel,BoxLayout.Y_AXIS));
+        JLabel startLabel=new JLabel("PRESS START TO PLAY GAME");
+        centerPanel.add(startLabel);
+
+    }
+
+    class GameQuiz{
+        public String question;
+        public ArrayList<String> answers;
+        public int rightAns;
+        public GameQuiz()
+        {
+            question="";
+            answers=new ArrayList<>();
+            rightAns=-1;
+        }
+
+        @Override
+        public String toString() {
+            return "GameQuiz{" +
+                    "question='" + question + '\'' +
+                    ", answers=" + answers +
+                    ", rightAns=" + rightAns +
+                    '}';
+        }
+    }
+
+    public GameQuiz generateQuiz(int mode)
+    {
+        GameQuiz quiz=new GameQuiz();
+        Random random=new Random();
+        String rightAnswer="";
+        //get one question and answer
+        int n=wordList.size();
+        int pos=random.nextInt(n);
+        if(mode==0) {
+            quiz.question = wordList.get(pos);
+            for (int i = 0; i < _NUMBER_OF_ANSWER - 1; i++) {
+                quiz.answers.add(meanList.get(random.nextInt(n)).get(0));
+            }
+            rightAnswer=meanList.get(pos).get(0);
+            quiz.answers.add(rightAnswer);
+            Collections.shuffle(quiz.answers);
+        }
+        else {
+            quiz.question = meanList.get(pos).get(0);
+            for (int i = 0; i < _NUMBER_OF_ANSWER - 1; i++) {
+                quiz.answers.add(wordList.get(random.nextInt(n)));
+            }
+            rightAnswer=wordList.get(pos);
+            quiz.answers.add(rightAnswer);
+            Collections.shuffle(quiz.answers);
+        }
+
+        //set right anwser
+        for(int i=0;i<_NUMBER_OF_ANSWER;i++)
+        {
+            if(quiz.answers.get(i).equals(rightAnswer)) {
+                quiz.rightAns = i;
+                break;
+            }
+        }
+
+        return quiz;
+    }
+
+
+}
+
+class SlangAnswerButton extends JButton
+{
+    private static int rightAnswerID=-1;
+    private String answer;
+    private int answerID;
+    public SlangAnswerButton(String answer,int answerID)
+    {
+        super(answer);
+        this.answer=answer;
+        this.answerID=answerID;
+    }
+
+    public static void setRightAnswerID(int rightID)
+    {
+        rightID=rightID;
+    }
+
+    public int getAnswerID()
+    {
+        return answerID;
+    }
+
+    public static int getRightAnswerID()
+    {
+        return rightAnswerID;
     }
 
 
