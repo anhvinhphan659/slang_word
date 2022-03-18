@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5ab98070-d6a6-4921-9949-9d0dc77e5244" name="Changes" comment="Finish function for dictionaryUI">
+    <list default="true" id="5ab98070-d6a6-4921-9949-9d0dc77e5244" name="Changes" comment="Finish function for MiniGameUI">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/screen/MiniGameUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/screen/MiniGameUI.java" afterDir="false" />
     </list>
@@ -87,7 +87,8 @@
       <workItem from="1647391763406" duration="8379000" />
       <workItem from="1647434030367" duration="3452000" />
       <workItem from="1647486485201" duration="27000" />
-      <workItem from="1647528404961" duration="4323000" />
+      <workItem from="1647528404961" duration="4411000" />
+      <workItem from="1647606650092" duration="9804000" />
     </task>
     <task id="LOCAL-00001" summary="Initialized project">
       <created>1646871733110</created>
@@ -138,7 +139,14 @@
       <option name="project" value="LOCAL" />
       <updated>1647399749899</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Finish function for MiniGameUI">
+      <created>1647532835754</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1647532835754</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -163,6 +171,7 @@
     <MESSAGE value="Finish basic for dictionaryUI" />
     <MESSAGE value="Finish basic for MiniGameUI" />
     <MESSAGE value="Finish function for dictionaryUI" />
-    <option name="LAST_COMMIT_MESSAGE" value="Finish function for dictionaryUI" />
+    <MESSAGE value="Finish function for MiniGameUI" />
+    <option name="LAST_COMMIT_MESSAGE" value="Finish function for MiniGameUI" />
   </component>
 </project>

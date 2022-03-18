@@ -1,6 +1,8 @@
 package screen;
 
 import javax.swing.*;
+import javax.swing.border.BevelBorder;
+import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -20,6 +22,7 @@ public class MiniGameUI extends JPanel
     private JLabel scoreLabel;
 
     JButton startButton;
+    JButton refreshButton;
 
     JComboBox  gameModeCB;
     private DefaultComboBoxModel<String> gameModeCBModel;
@@ -59,16 +62,29 @@ public class MiniGameUI extends JPanel
         leftPanel.setLayout(new BorderLayout());
         gameModeCBModel =new DefaultComboBoxModel<>();
 
+        JPanel gameOutlinePanel=new JPanel();
         JPanel gamePanel=new JPanel();
         JPanel buttonPanel=new JPanel();
         JPanel buttonTopPanel=new JPanel(new FlowLayout());
 
         gamePanel.setLayout(new BoxLayout(gamePanel,BoxLayout.Y_AXIS));
+        gamePanel.setBorder(new BevelBorder(BevelBorder.RAISED));
         JLabel scroreText= new JLabel("Score");
+        scroreText.setFont(new Font("Helvetica Neue",Font.PLAIN,30));
+        scroreText.setForeground(Color.red);
         scroreText.setAlignmentX(Component.CENTER_ALIGNMENT);
         scoreLabel=new JLabel("10/10");
+        scoreLabel.setFont(new Font("Helvetica Neue",Font.PLAIN,25));
+        scoreLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+
         gamePanel.add(scroreText);
         gamePanel.add(scoreLabel);
+
+        gameOutlinePanel.setLayout(new BorderLayout());
+        gameOutlinePanel.add(gamePanel,BorderLayout.CENTER);
+
+        gameOutlinePanel.setPreferredSize(new Dimension(200,250));
+        gameOutlinePanel.setBorder(new EmptyBorder(30,20,30,20));
 
 
         buttonPanel.setLayout(new BoxLayout(buttonPanel,BoxLayout.Y_AXIS));
@@ -83,16 +99,18 @@ public class MiniGameUI extends JPanel
         buttonTopPanel.add(gameModeCB);
         buttonTopPanel.setPreferredSize(new Dimension(200,50));
 
-        startButton=new JButton("START");
-        JButton refreshButton=new JButton("Refresh");
+        startButton=new JButton(" START ");
 
+        refreshButton = new JButton("Refresh");
+        startButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+        refreshButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         buttonPanel.add(startButton);
         buttonPanel.add(refreshButton);
         buttonPanel.add(buttonTopPanel);
 
         gamePanel.setPreferredSize(new Dimension(250,200));
 
-        buttonPanel.setBackground(Color.orange);
+
 
         JButton backButton=new JButton("Back to Main");
         backButton.addActionListener(new ActionListener() {
@@ -113,11 +131,17 @@ public class MiniGameUI extends JPanel
             @Override
             public void actionPerformed(ActionEvent e) {
                 startButton.setEnabled(true);
+
                 loadStartedScreen();
             }
         });
 
-        leftPanel.add(gamePanel,BorderLayout.NORTH);
+        buttonPanel.setBackground(Color.white);
+        buttonTopPanel.setBackground(Color.white);
+
+        gameOutlinePanel.setBackground(Color.WHITE);
+
+        leftPanel.add(gameOutlinePanel,BorderLayout.NORTH);
         leftPanel.add(buttonPanel,BorderLayout.CENTER);
         leftPanel.add(backButton,BorderLayout.SOUTH);
 
@@ -156,22 +180,43 @@ public class MiniGameUI extends JPanel
 
         centerPanel.setLayout(new BorderLayout());
 
+
         GameQuiz quiz;
-        if (mode==0)
-            quiz=generateQuiz(0);
-        else
-            quiz=generateQuiz(1);
+        quiz=generateQuiz(mode);
         String question= quiz.question;
         String[]answers=quiz.answers.toArray(new String[0]);
         int rightAnwser=quiz.rightAns;
-        JPanel topGamePanel=new JPanel();
+        JPanel topGamePanel=new JPanel(new BorderLayout());
+        JPanel questionPanel=new JPanel(new BorderLayout());
         JPanel centerGamePanel=new JPanel(new GridLayout(2,2,25,25));
         JPanel emptyPanel=new JPanel();
 
         topGamePanel.setLayout(new BoxLayout(topGamePanel,BoxLayout.Y_AXIS));
         topGamePanel.setPreferredSize(new Dimension(600,100));
+        //handle question string
+        if(mode==0)
+        {
+            question=String.format("Question %d. What is mean of \"%s\"?",currentAnswerQuiz+1,question);
+        }
+        else
+        {
+            question=String.format("Question %d. What is Slang word of \"%s\"?",currentAnswerQuiz+1,question);
+        }
+
         JLabel questionLabel=new JLabel(question);
-        topGamePanel.add(questionLabel);
+        questionLabel.setFont(new Font("Arial",Font.BOLD,16));
+//        questionLabel.setForeground(Color.white);
+
+        questionLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        questionLabel.setVerticalAlignment(SwingConstants.CENTER);
+
+        questionPanel.add(questionLabel,BorderLayout.CENTER);
+        questionPanel.setBackground(Color.white);
+        questionPanel.setBorder(new BevelBorder(BevelBorder.RAISED));
+
+        topGamePanel.add(questionPanel,BorderLayout.CENTER);
+        topGamePanel.setBackground(Color.BLUE);
+        topGamePanel.setBorder(new EmptyBorder(30,30,30,30));
         SlangAnswerButton.setRightAnswerID(rightAnwser);
 
         emptyPanel.setPreferredSize(new Dimension(600,200));
@@ -189,6 +234,7 @@ public class MiniGameUI extends JPanel
                         rightAnswerQuiz++;
                     }
                     currentAnswerQuiz++;
+                    updateScore();
                     if(currentAnswerQuiz<_NUMBER_OF_QUIZ)
                     {
                         loadGame(mode);
@@ -198,29 +244,49 @@ public class MiniGameUI extends JPanel
                     else
                     {
                         //load done
-                        JOptionPane.showMessageDialog(null,"Your game is finished with score: "+String.valueOf(rightAnwser));
+                        JOptionPane.showMessageDialog(null,"Your game is finished with score: "+String.valueOf(rightAnswerQuiz));
                         loadStartedScreen();
+                        startButton.setEnabled(true);
                     }
                 }
             });
             centerGamePanel.add(answerButton);
         }
 
+        centerGamePanel.setBorder(new EmptyBorder(30,30,30,30));
+
+        topGamePanel.setBackground(Color.DARK_GRAY);
+        centerGamePanel.setBackground(Color.DARK_GRAY);
+        emptyPanel.setBackground(Color.DARK_GRAY);
+
         centerPanel.add(topGamePanel,BorderLayout.NORTH);
         centerPanel.add(centerGamePanel,BorderLayout.CENTER);
         centerPanel.add(emptyPanel,BorderLayout.SOUTH);
 
+        centerPanel.setVisible(true);
+
+    }
+
+    public void updateScore()
+    {
+        scoreLabel.setText(String.format("%d/%d",rightAnswerQuiz,_NUMBER_OF_QUIZ));
     }
 
     public void loadStartedScreen()
     {
 //        centerPanel.setVisible(false);
+        currentAnswerQuiz=rightAnswerQuiz=0;
         centerPanel.removeAll();
         centerPanel.revalidate();
         centerPanel.repaint();
-        centerPanel.setLayout(new BoxLayout(centerPanel,BoxLayout.Y_AXIS));
+        centerPanel.setLayout(new BorderLayout());
+        centerPanel.setBackground(Color.DARK_GRAY);
         JLabel startLabel=new JLabel("PRESS START TO PLAY GAME");
-        centerPanel.add(startLabel);
+        startLabel.setForeground(Color.white);
+        startLabel.setFont(new Font("Arial",Font.BOLD,25));
+        startLabel.setHorizontalAlignment(JLabel.CENTER);
+        centerPanel.add(startLabel,BorderLayout.CENTER);
+        updateScore();
 
     }
 
