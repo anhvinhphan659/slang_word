@@ -61,7 +61,7 @@ public class SlangHashMap {
             ret+=means.get(i)+splitRegex;
 
         }
-        return ret;
+        return ret.substring(0,ret.length()-splitRegex.length());
     }
 
     public void saveDictionary()

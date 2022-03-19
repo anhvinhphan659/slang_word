@@ -4,10 +4,13 @@ import data.DataHandler;
 import data.SlangHashMap;
 
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Random;
+import java.util.TreeSet;
 
 public class MainUI {
 
@@ -19,11 +22,15 @@ public class MainUI {
 
     private JPanel mainPanel;
     private JPanel topPanel;
+    private JPanel centerPanel;
     private JPanel bottomPanel;
 
     private JButton dictionaryButton;
     private JButton mini_gameButton;
     private JButton exitButton;
+    private JButton randomSlangButton;
+
+    private JLabel randomSlangLabel;
 
     private SlangHashMap dictionary;
     public MainUI(SlangHashMap dictionary)
@@ -41,12 +48,15 @@ public class MainUI {
     {
         mainPanel=new JPanel(new BorderLayout());
         topPanel=new JPanel();
+        centerPanel=new JPanel();
         bottomPanel=new JPanel(new GridBagLayout());
+        bottomPanel.setBorder(new EmptyBorder(5,0,50,0));
 
         //set up default parameters
         JFrame.setDefaultLookAndFeelDecorated(true);
         mainFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         mainFrame.setSize(_WINDOW_WIDTH,_WINDOW_HEIGHT);
+        mainFrame.setMinimumSize(new Dimension(950,700));
 
         topPanel.setSize(_WINDOW_WIDTH,_TOP_HEIGHT);
 
@@ -76,13 +86,22 @@ public class MainUI {
         mainPanel.add(new JLabel("SLANG WORD"));
 
         mainPanel.add(topPanel,BorderLayout.NORTH);
-        mainPanel.add(bottomPanel,BorderLayout.CENTER);
+        mainPanel.add(centerPanel,BorderLayout.CENTER);
+        mainPanel.add(bottomPanel,BorderLayout.SOUTH);
 
         //set up top panel
         Image slang_image=new ImageIcon("resources/asset/slang_word_main.png")
                 .getImage().getScaledInstance(_WINDOW_WIDTH,_TOP_HEIGHT,Image.SCALE_DEFAULT);
 
         topPanel.add(new JLabel(new ImageIcon(slang_image)));
+        //set up center panel
+        centerPanel.setPreferredSize(new Dimension(_WINDOW_WIDTH,40));
+        centerPanel.setBackground(Color.white);
+        centerPanel.setLayout(new FlowLayout());
+        randomSlangButton=new JButton("Random Slang Word");
+        randomSlangLabel=new JLabel();
+        showRandomSlang();
+
 
         //set up bottom panel
         GridBagConstraints g=new GridBagConstraints();
@@ -116,6 +135,12 @@ public class MainUI {
             @Override
             public void actionPerformed(ActionEvent e) {
                 System.exit(0);
+            }
+        });
+        randomSlangButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                showRandomSlang();
             }
         });
     }
@@ -159,6 +184,22 @@ public class MainUI {
     public void resetDictionary()
     {
         dictionary= DataHandler.loadData(SlangHashMap._BACKUP_DATA_PATH);
+    }
+    public void showRandomSlang()
+    {
+        centerPanel.removeAll();
+        centerPanel.revalidate();
+        centerPanel.repaint();
+
+        Random random=new Random();
+        ArrayList<String> words=new ArrayList<>(dictionary.getData().keySet());
+        int pos=random.nextInt(words.size());
+        String randomSlang=words.get(pos);
+        randomSlang+=" means "+SlangHashMap.meansToString(dictionary.getData().get(randomSlang)," or ");
+        randomSlangLabel.setText(randomSlang);
+        //add label to center
+        centerPanel.add(randomSlangButton);
+        centerPanel.add(randomSlangLabel);
     }
 
 }

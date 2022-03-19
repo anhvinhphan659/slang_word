@@ -131,15 +131,14 @@ public class MiniGameUI extends JPanel
             @Override
             public void actionPerformed(ActionEvent e) {
                 startButton.setEnabled(true);
-
                 loadStartedScreen();
             }
         });
 
-        buttonPanel.setBackground(Color.white);
-        buttonTopPanel.setBackground(Color.white);
-
-        gameOutlinePanel.setBackground(Color.WHITE);
+//        buttonPanel.setBackground(Color.white);
+//        buttonTopPanel.setBackground(Color.white);
+        gamePanel.setBackground(Color.WHITE);
+//        gameOutlinePanel.setBackground(Color.WHITE);
 
         leftPanel.add(gameOutlinePanel,BorderLayout.NORTH);
         leftPanel.add(buttonPanel,BorderLayout.CENTER);
@@ -161,15 +160,8 @@ public class MiniGameUI extends JPanel
 
         //get mode
         int mode=gameModeCB.getSelectedIndex();
-
-        //generate list question and answer
-
-
-
-        //load game here
-//        String[] anwers={"Ans1","Ans2","Ans3","Ans4"};
         loadGame(mode);
-//        loadGame(quiz.question,quiz.answers.toArray(new String[0]),quiz.rightAns);
+
 
     }
 

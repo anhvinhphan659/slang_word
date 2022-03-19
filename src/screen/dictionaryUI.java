@@ -4,6 +4,7 @@ import data.SlangHashMap;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
+import javax.swing.border.LineBorder;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.text.TextAction;
@@ -60,8 +61,8 @@ public class dictionaryUI extends JPanel
         leftPanel.setPreferredSize(new Dimension(250,MainUI._WINDOW_HEIGHT));
         rightPanel.setPreferredSize(new Dimension(200,MainUI._WINDOW_HEIGHT));
 
-        leftPanel.setBackground(Color.BLUE);
-        rightPanel.setBackground(Color.BLUE);
+//        leftPanel.setBackground(Color.BLUE);
+//        rightPanel.setBackground(Color.BLUE);
 
         setupLeftPanel();
         setupCenterPanel();
@@ -80,6 +81,8 @@ public class dictionaryUI extends JPanel
 
         rightPanel.setLayout(new BorderLayout());
         JLabel label=new JLabel("Search history");
+        label.setForeground(Color.green);
+        label.setBorder(new EmptyBorder(10,5,10,5));
         label.setFont(new Font("Serif",Font.BOLD,20));
         rightPanel.add(label,BorderLayout.NORTH);
 
@@ -94,6 +97,14 @@ public class dictionaryUI extends JPanel
         emptyPanel.setPreferredSize(new Dimension(200,50));
         emptyPanel.add(emptyButton);
 
+
+        leftPanel.setBorder(new LineBorder(Color.GRAY,1));
+        rightPanel.setBorder(new LineBorder(Color.GRAY,1));
+        centerPanel.setBorder(new LineBorder(Color.GRAY,1));
+
+        scrollPane.setBackground(Color.DARK_GRAY);
+        emptyPanel.setBackground(Color.DARK_GRAY);
+        rightPanel.setBackground(Color.DARK_GRAY);
         rightPanel.add(scrollPane,BorderLayout.CENTER);
         rightPanel.add(emptyPanel,BorderLayout.SOUTH);
 
@@ -168,6 +179,8 @@ public class dictionaryUI extends JPanel
         leftPanel.add(topPanel, BorderLayout.NORTH);
         leftPanel.add(centerPanel,BorderLayout.CENTER);
         leftPanel.add(backButton, BorderLayout.SOUTH);
+
+
 
         //set up action
         dictionaryList.addMouseListener(new MouseAdapter() {
@@ -296,9 +309,12 @@ public class dictionaryUI extends JPanel
         centerPanel.setLayout(new BoxLayout(centerPanel,BoxLayout.Y_AXIS));
 
         JPanel topPanel=new JPanel(new BorderLayout());
-        topPanel.add(new JLabel("Word Meaning"), BorderLayout.NORTH);
+        JLabel word_meaningLabel=new JLabel("Word Meaning");
+        word_meaningLabel.setFont(new Font("Arial",Font.BOLD,20));
+        word_meaningLabel.setBorder(new EmptyBorder(10,10,10,10));
+        topPanel.add(word_meaningLabel, BorderLayout.NORTH);
         topPanel.add(new JSeparator(),BorderLayout.CENTER);
-        topPanel.setBackground(Color.GREEN);
+//        topPanel.setBackground(Color.GREEN);
         topPanel.setMaximumSize(new Dimension(Integer.MAX_VALUE,100));
 
         wordLabel=new JLabel();
@@ -307,15 +323,34 @@ public class dictionaryUI extends JPanel
         JPanel wordPanel=new JPanel(new BorderLayout());
         JPanel meanPanel=new JPanel(new BorderLayout());
 
-        wordPanel.add(new JLabel("Word"), BorderLayout.LINE_START);
+        JLabel wordTextLabel=new JLabel("Word");
+
+        wordTextLabel.setFont(new Font("Arial",Font.BOLD,18));
+        wordTextLabel.setBorder(new EmptyBorder(0,5,0,30));
+        wordLabel.setFont(new Font("Arial",Font.PLAIN,16));
+
+
+        wordPanel.add(wordTextLabel, BorderLayout.LINE_START);
         wordPanel.add(wordLabel,BorderLayout.CENTER);
         wordPanel.setMaximumSize(new Dimension(Integer.MAX_VALUE,100));
-        wordPanel.setBackground(Color.orange);
+        wordPanel.setBorder(new EmptyBorder(30,10,30,10));
+//        wordPanel.setBackground(Color.orange);
 
-        meanPanel.setBackground(Color.DARK_GRAY);
+//        meanPanel.setBackground(Color.DARK_GRAY);
+        JLabel meanTextLabel=new JLabel("Mean:");
+        meanTextLabel.setBorder(new EmptyBorder(0,15,0,30));
+        meanTextLabel.setFont(new Font("Arial",Font.BOLD,18));
 
-        meanPanel.add(new JLabel("Mean:"),BorderLayout.NORTH);
+        meanLabel.setFont(new Font("Arial",Font.PLAIN,16));
+        meanLabel.setVerticalAlignment(JLabel.NORTH);
+        meanLabel.setBorder(new EmptyBorder(10,15,0,0));
+
+        meanPanel.add(meanTextLabel,BorderLayout.NORTH);
         meanPanel.add(meanLabel,BorderLayout.CENTER);
+
+        topPanel.setBackground(Color.WHITE);
+        wordPanel.setBackground(Color.WHITE);
+        meanPanel.setBackground(Color.WHITE);
 
         centerPanel.add(topPanel);
         centerPanel.add(wordPanel);
@@ -457,7 +492,9 @@ public class dictionaryUI extends JPanel
             setupCenterPanel();
             //display to UI
             wordLabel.setText(word);
-            meanLabel.setText(map.get(word).toString());
+            String mean=SlangHashMap.meansToString(map.get(word),"<br>");
+            mean="<html>"+mean+"<html>";
+            meanLabel.setText(mean);
             //add to history;
             historyListModel.addElement(word);
             System.out.println(word);
@@ -481,64 +518,4 @@ public class dictionaryUI extends JPanel
 
 
 
-}
-
-class CustomWordDialog
-{
-
-    public CustomWordDialog()
-    {
-        createCustomPanel();
-    }
-
-    public JPanel createCustomPanel()
-    {
-        JPanel custom;
-        custom = new JPanel();
-        custom.setPreferredSize(new Dimension(300,150));
-        custom.setLayout(new BorderLayout());
-
-        JPanel topPanel=new JPanel();
-        JPanel centerPanel=new JPanel();
-        JPanel bottomPanel=new JPanel();
-
-        topPanel.setPreferredSize(new Dimension(300,50));
-        topPanel.setLayout(new BorderLayout());
-
-
-        JTextField wordTF=new JTextField();
-        JTextArea meanTA=new JTextArea();
-        wordTF.setSize(new Dimension(200,30));
-        topPanel.setBorder(new EmptyBorder(10,0,10,0));
-        topPanel.add(new JLabel("Word: "), BorderLayout.WEST);
-        topPanel.add(wordTF,BorderLayout.CENTER);
-
-
-        meanTA.setSize(new Dimension(200,100));
-        centerPanel.setPreferredSize(new Dimension(300,100));
-        centerPanel.add(new JLabel("Mean:"));
-
-
-        bottomPanel.setLayout(new GridLayout(1,2,20,20));
-        JButton doneButton=new JButton("Done");
-        bottomPanel.add(doneButton);
-        bottomPanel.add(new JButton("Test"));
-
-        doneButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                custom.setVisible(true);
-            }
-        });
-        custom.add(topPanel,BorderLayout.NORTH);
-        custom.add(centerPanel,BorderLayout.CENTER);
-//        custom.add(bottomPanel,BorderLayout.SOUTH);
-
-        return custom;
-    }
-
-    public String getWord()
-    {
-        return "wordTF.getText()";
-    }
 }
