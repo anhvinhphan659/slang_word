@@ -15,7 +15,7 @@ import java.util.TreeSet;
 public class MainUI {
 
     public static final int _WINDOW_WIDTH=800;
-    public static final int _WINDOW_HEIGHT=600;
+    public static final int _WINDOW_HEIGHT=650;
     public static final int _TOP_HEIGHT=200;
 
     private JFrame mainFrame;
@@ -55,10 +55,16 @@ public class MainUI {
         //set up default parameters
         JFrame.setDefaultLookAndFeelDecorated(true);
         mainFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        mainFrame.setSize(_WINDOW_WIDTH,_WINDOW_HEIGHT);
-        mainFrame.setMinimumSize(new Dimension(950,700));
+        mainFrame.setSize(new Dimension(_WINDOW_WIDTH,_WINDOW_HEIGHT));
+//        mainFrame.setPreferredSize(new Dimension(_WINDOW_WIDTH,750));
+
+        mainFrame.setMinimumSize(new Dimension(_WINDOW_WIDTH,600));
+        mainFrame.setMaximumSize(new Dimension(_WINDOW_WIDTH+200,750));
 
         topPanel.setSize(_WINDOW_WIDTH,_TOP_HEIGHT);
+
+        centerPanel.setMaximumSize(new Dimension(_WINDOW_WIDTH,80));
+        centerPanel.setBorder(new EmptyBorder(10,0,10,0));
 
         bottomPanel.setBackground(Color.white);
 
@@ -85,9 +91,9 @@ public class MainUI {
         mainFrame.add(mainPanel);
         mainPanel.add(new JLabel("SLANG WORD"));
 
-        mainPanel.add(topPanel,BorderLayout.NORTH);
+        mainPanel.add(topPanel,BorderLayout.PAGE_START);
         mainPanel.add(centerPanel,BorderLayout.CENTER);
-        mainPanel.add(bottomPanel,BorderLayout.SOUTH);
+        mainPanel.add(bottomPanel,BorderLayout.PAGE_END);
 
         //set up top panel
         Image slang_image=new ImageIcon("resources/asset/slang_word_main.png")
@@ -95,8 +101,8 @@ public class MainUI {
 
         topPanel.add(new JLabel(new ImageIcon(slang_image)));
         //set up center panel
-        centerPanel.setPreferredSize(new Dimension(_WINDOW_WIDTH,40));
-        centerPanel.setBackground(Color.white);
+//        centerPanel.setMaximumSize(new Dimension(_WINDOW_WIDTH,40));
+        centerPanel.setBackground(Color.WHITE);
         centerPanel.setLayout(new FlowLayout());
         randomSlangButton=new JButton("Random Slang Word");
         randomSlangLabel=new JLabel();
@@ -104,6 +110,7 @@ public class MainUI {
 
 
         //set up bottom panel
+        bottomPanel.setPreferredSize(new Dimension(_WINDOW_WIDTH,300));
         GridBagConstraints g=new GridBagConstraints();
         g.fill=GridBagConstraints.VERTICAL;
         g.insets=new Insets(5,0,5,0);

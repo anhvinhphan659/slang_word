@@ -249,7 +249,7 @@ public class dictionaryUI extends JPanel
                            word+ "\"?","Delete word",JOptionPane.YES_NO_OPTION,JOptionPane.WARNING_MESSAGE);
                     if(result==JOptionPane.YES_OPTION)
                     {
-                        System.out.println(word+"is removed!");
+                        System.out.println(word+" is removed!");
                         //remove in list model and slang dict
                         mainUI.removeWord(word);
                         //update dictionary
@@ -279,16 +279,24 @@ public class dictionaryUI extends JPanel
     {
         String text=searchTextField.getText();
         dictionaryListModel.removeAllElements();
+        System.out.println("\""+text+"\"");
         int mode=searchOptionCB.getSelectedIndex();
+        if (text.length()==0)
+        {
+            dictionaryListModel.addAll(sortedWordSet);
+            System.out.println("Done Filter");
+            return;
+        }
         for(String s:sortedWordSet)
         {
             if(mode==0)
             {
                 text=text.toUpperCase();
-                if(s.contains(text)&&s.startsWith(text))
+                if(s.startsWith(text))
                 {
                     dictionaryListModel.addElement(s);
                 }
+
             }
             else
             {
@@ -300,6 +308,7 @@ public class dictionaryUI extends JPanel
             }
 
         }
+        System.out.println("Done Filter");
     }
 
     public void setupCenterPanel()

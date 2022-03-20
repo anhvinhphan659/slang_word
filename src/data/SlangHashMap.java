@@ -74,8 +74,8 @@ public class SlangHashMap {
             {
                 String line=word+"`";
                 ArrayList<String> means=dictMap.get(word);
-                line+=meansToString(means,"| ");
-                line=line.substring(0,line.length()-2)+"\n";
+                line+=meansToString(means,"| ")+"\n";
+
                 bw.write(line);
             }
             bw.close();

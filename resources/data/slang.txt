@@ -1,4 +1,3 @@
- HK`Hong Kong| Hostile Kids
  MCR`My Chemical Romance (band)
 #1`Number one
 $`Dollar| money
@@ -13,7 +12,7 @@ $_$`Has money
 (.)(.)`Female Breasts
 (8)`Musical note (MSN)
 (:`Happy
-(A)`Angel (MSN)| Anhon
+(A)`Angel (MSN)
 (H)`Cool dude emoticon (MSN)
 (K)`Kiss (MSN)
 (L)`Love heart (MSN)

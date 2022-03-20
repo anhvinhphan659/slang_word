@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="slang_word:jar" />
+    </artifacts-to-build>
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="5ab98070-d6a6-4921-9949-9d0dc77e5244" name="Changes" comment="update UI for MiniGameUI">
+    <list default="true" id="5ab98070-d6a6-4921-9949-9d0dc77e5244" name="Changes" comment="update UI for MainUI, dictionaryUI">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/data/slang.txt" beforeDir="false" afterPath="$PROJECT_DIR$/resources/data/slang.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/data/SlangHashMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/SlangHashMap.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/screen/MainUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/screen/MainUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screen/MiniGameUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/screen/MiniGameUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screen/ModifyUI.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screen/SearchUI.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/screen/dictionaryUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/screen/dictionaryUI.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -27,6 +29,14 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
+  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -41,14 +51,15 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/data" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/out/artifacts/slang_word_jar" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Bai Lam\Nam 3\LTUDJava\BT2\slang_word\out\artifacts\slang_word_jar" />
       <recent name="D:\Bai Lam\Nam 3\LTUDJava\BT2\slang_word\resources\data" />
       <recent name="D:\Bai Lam\Nam 3\LTUDJava\BT2\slang_word\data" />
       <recent name="D:\Bai Lam\Nam 3\LTUDJava\BT2\slang_word\out\production\slang_word" />
@@ -95,7 +106,10 @@
       <workItem from="1647486485201" duration="27000" />
       <workItem from="1647528404961" duration="4411000" />
       <workItem from="1647606650092" duration="9804000" />
-      <workItem from="1647646124893" duration="5385000" />
+      <workItem from="1647646124893" duration="5688000" />
+      <workItem from="1647758492501" duration="5683000" />
+      <workItem from="1647764512254" duration="368000" />
+      <workItem from="1647767884399" duration="237000" />
     </task>
     <task id="LOCAL-00001" summary="Initialized project">
       <created>1646871733110</created>
@@ -160,7 +174,14 @@
       <option name="project" value="LOCAL" />
       <updated>1647646180510</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="update UI for MainUI, dictionaryUI">
+      <created>1647653274098</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1647653274098</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -187,6 +208,7 @@
     <MESSAGE value="Finish function for dictionaryUI" />
     <MESSAGE value="Finish function for MiniGameUI" />
     <MESSAGE value="update UI for MiniGameUI" />
-    <option name="LAST_COMMIT_MESSAGE" value="update UI for MiniGameUI" />
+    <MESSAGE value="update UI for MainUI, dictionaryUI" />
+    <option name="LAST_COMMIT_MESSAGE" value="update UI for MainUI, dictionaryUI" />
   </component>
 </project>
